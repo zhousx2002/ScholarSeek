@@ -1,0 +1,8 @@
+{
+  "base_model": "BAAI/bge-reranker-base",
+  "max_length": 256,
+  "best_dev_loss": 0.44056853548370417,
+  "loss": "pairwise",
+  "dev_pair_accuracy": 0.8751458576429405,
+  "gradient_accumulation_steps": 16
+}
