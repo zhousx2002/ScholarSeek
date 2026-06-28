@@ -1,0 +1,25 @@
+[project]
+name = "scholarseek-agent"
+version = "0.1.0"
+description = "A lightweight academic paper search agent for complex scholarly queries."
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+reranker = [
+  "torch",
+  "transformers",
+  "accelerate",
+]
+
+[project.scripts]
+scholarseek = "scholarseek.cli:main"
+scholarseek-web = "scholarseek.web_server:main"
+scholarseek-reranker = "scholarseek.train_reranker:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
