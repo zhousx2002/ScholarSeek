@@ -1,0 +1,9 @@
+﻿C:\Users\z2298\Desktop\赛道三论文\赛道三论文\a-novel-reinforcement-learning-framework-of-llm-agents-Paper-Conference.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\Domain-aligned LLM framework for trustworthy.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\LitSearch A Retrieval Benchmark for Scientific Literature Search.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\SPAR Scholar Paper Retrieval with LLM-based Agents for Enhanced.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\参考文献1\PaSa An LLM Agent for Comprehensive Academic Paper Search.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\参考文献3\ASTABENCH RIGOROUS BENCHMARKING OF AI.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\参考文献6\DEMONSTRATE–SEARCH–PREDICT.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\参考文献8\generative-representational-instruction-tuning-Paper-Conference.pdf
+C:\Users\z2298\Desktop\赛道三论文\赛道三论文\参考文献9\Measuring and Narrowing the Compositionality Gap in Language Models.pdf

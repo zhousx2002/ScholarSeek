@@ -1,0 +1,30 @@
+{
+  "model_type": "compact-feature-logistic-reranker",
+  "feature_names": [
+    "query_coverage",
+    "title_coverage",
+    "jaccard",
+    "ordered_phrase",
+    "bigram_overlap",
+    "length_balance",
+    "rare_token_overlap",
+    "numeric_overlap"
+  ],
+  "weights": [
+    3.587336651088216,
+    4.788931731107969,
+    2.2142474117044317,
+    1.1024869216702855e-05,
+    0.41353624134175465,
+    -0.09792456358767743,
+    2.1894867198550862,
+    0.0075835075750477
+  ],
+  "bias": -2.0918222956903536,
+  "best_epoch": 1,
+  "best_dev_loss": 0.3545590231528864,
+  "best_dev_auc": 0.8035145399305555,
+  "train_pairs": 435525,
+  "dev_pairs": 12000,
+  "source_dataset": "PaSa AutoScholarQuery pairs"
+}

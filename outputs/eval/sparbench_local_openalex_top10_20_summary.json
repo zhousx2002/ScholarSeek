@@ -1,0 +1,15 @@
+{
+  "queries": 20,
+  "precision": 0.030000000000000006,
+  "recall": 0.029987443253163337,
+  "f1": 0.02653064975645621,
+  "hit@10": 0.2,
+  "mrr": 0.13125,
+  "micro_precision": 0.03,
+  "micro_recall": 0.02643171806167401,
+  "micro_f1": 0.02810304449648712,
+  "retrieval_recall": 0.11085208528793722,
+  "retrieval_hit": 0.75,
+  "average_retrieved_candidates": 238.2,
+  "average_latency_seconds": 12.461249999999998
+}

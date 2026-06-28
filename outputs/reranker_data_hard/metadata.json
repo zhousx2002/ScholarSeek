@@ -1,0 +1,9 @@
+{
+  "train_records": 33551,
+  "dev_records": 1000,
+  "title_pool": 33267,
+  "train_pairs": 609625,
+  "dev_pairs": 17769,
+  "negatives_per_positive": 2,
+  "hard_negatives_per_positive": 4
+}

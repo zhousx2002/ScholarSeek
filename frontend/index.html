@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScholarCP Agent</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app" data-view="home">
+      <section id="homeView" class="home-view" aria-label="ScholarCP home">
+        <div class="home-inner">
+          <div class="hero-logo" aria-label="ScholarCP Agent">
+            <div class="logo-mark" aria-hidden="true">
+              <span class="mark-core">CP</span>
+              <span class="mark-ring"></span>
+            </div>
+            <div class="logo-copy">
+              <div class="logo-word"><span>Scholar</span><span>CP</span></div>
+              <div class="logo-subtitle"><span>Paper</span><span>Agent</span></div>
+            </div>
+          </div>
+
+          <p class="home-note">
+            面向学术论文检索的智能代理系统，支持自然语言查询、本地候选增强、学术 API 检索、可训练重排与 Qwen 证据回答。
+          </p>
+
+          <form id="homeSearchForm" class="search-pill home-search" role="search">
+            <input
+              id="homeQuery"
+              autocomplete="off"
+              placeholder="请输入你的学术检索需求"
+            />
+            <button class="search-button" type="submit" aria-label="Search"><span></span></button>
+          </form>
+
+          <div class="home-badges" aria-label="system capabilities">
+            <span>Qwen API</span>
+            <span>LocalCorpus</span>
+            <span>OpenAlex</span>
+            <span>arXiv</span>
+            <span>Trainable Reranker</span>
+            <span>SPAR Pipeline</span>
+          </div>
+
+          <footer class="home-links">
+            <a href="https://arxiv.org" target="_blank" rel="noreferrer">arXiv</a>
+            <a href="https://openalex.org" target="_blank" rel="noreferrer">OpenAlex</a>
+            <a href="https://github.com" target="_blank" rel="noreferrer">Github</a>
+          </footer>
+        </div>
+      </section>
+
+      <section id="resultsView" class="results-view" aria-label="ScholarCP results">
+        <header class="results-topbar">
+          <button id="backHome" class="compact-logo" type="button" aria-label="Back home">
+            <span>SCP</span>
+          </button>
+
+          <form id="resultsSearchForm" class="search-pill top-search" role="search">
+            <input id="resultsQuery" autocomplete="off" />
+            <button class="search-button" type="submit" aria-label="Search"><span></span></button>
+          </form>
+
+          <div class="top-actions" aria-label="result actions">
+            <button id="refreshButton" class="icon-button" type="button" title="Refresh" aria-label="Refresh">
+              <span aria-hidden="true">R</span>
+            </button>
+            <button id="pauseButton" class="icon-button" type="button" title="Pause" aria-label="Pause">
+              <span aria-hidden="true">II</span>
+            </button>
+            <button id="downloadButton" class="icon-button" type="button" title="Download" aria-label="Download">
+              <span aria-hidden="true">D</span>
+            </button>
+            <button id="shareButton" class="icon-button" type="button" title="Copy summary" aria-label="Copy summary">
+              <span aria-hidden="true">C</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="pipeline-strip" aria-label="pipeline status">
+          <div class="pipeline-step">
+            <span>Planner</span>
+            <strong id="pipelinePlanner">Ready</strong>
+          </div>
+          <div class="pipeline-step">
+            <span>APIs</span>
+            <strong id="pipelineApis">LocalCorpus, OpenAlex</strong>
+          </div>
+          <div class="pipeline-step">
+            <span>Reranker</span>
+            <strong id="pipelineReranker">Lexical</strong>
+          </div>
+          <div class="pipeline-step">
+            <span>Qwen</span>
+            <strong id="pipelineQwen">Idle</strong>
+          </div>
+          <div class="pipeline-step timing-step">
+            <span>Timing</span>
+            <strong id="pipelineTiming">--</strong>
+          </div>
+        </section>
+
+        <main class="results-shell">
+          <aside class="control-panel" aria-label="search controls">
+            <section class="control-section">
+              <div class="control-title">Search Mode</div>
+              <div class="strategy-tabs" role="group" aria-label="search strategy">
+                <button class="active" type="button" data-strategy="standard">Fast</button>
+                <button type="button" data-strategy="spar-qwen">SPAR</button>
+              </div>
+            </section>
+
+            <section class="control-section">
+              <div class="control-title">Sources</div>
+              <label class="check-line">
+                <input id="sourceLocal" type="checkbox" checked />
+                <span>LocalCorpus</span>
+              </label>
+              <label class="check-line">
+                <input id="sourceOpenAlex" type="checkbox" checked />
+                <span>OpenAlex</span>
+              </label>
+              <label class="check-line">
+                <input id="sourceArxiv" type="checkbox" />
+                <span>arXiv</span>
+              </label>
+              <label class="check-line disabled">
+                <input type="checkbox" disabled />
+                <span>Semantic Scholar Key Required</span>
+              </label>
+            </section>
+
+            <section class="control-section">
+              <div class="control-title">Time Range</div>
+              <nav class="time-tabs" aria-label="time filters">
+                <button class="active" type="button" data-year-filter="any">Any time</button>
+                <button type="button" data-year-filter="2021">Since 2021</button>
+                <button type="button" data-year-filter="2023">Since 2023</button>
+                <button type="button" data-year-filter="2024">Since 2024</button>
+                <button type="button" data-year-filter="custom">Custom</button>
+              </nav>
+            </section>
+
+            <section class="control-section">
+              <div class="control-title">Retrieval</div>
+              <label class="number-line">
+                <span>Top-K</span>
+                <input id="limitInput" type="number" min="5" max="30" step="1" value="10" />
+              </label>
+              <label class="number-line">
+                <span>Per query</span>
+                <input id="perQueryInput" type="number" min="5" max="80" step="5" value="80" />
+              </label>
+              <label class="number-line">
+                <span>Queries</span>
+                <input id="maxQueriesInput" type="number" min="1" max="8" step="1" value="3" />
+              </label>
+            </section>
+
+            <section class="control-section">
+              <div class="control-title">Answer</div>
+              <label class="switch-line">
+                <input id="answerToggle" type="checkbox" checked />
+                <span>Generate Qwen answer</span>
+              </label>
+            </section>
+          </aside>
+
+          <section class="paper-board">
+            <div class="board-status">
+              <span id="statusText">Ready. Enter a query to search academic papers.</span>
+              <span id="loadingBar" class="loading-bar" aria-hidden="true"></span>
+            </div>
+            <section id="answerPanel" class="answer-panel" aria-label="AI answer">
+              <div class="answer-kicker">Qwen Answer | 问答回答</div>
+              <div id="answerText" class="answer-text">
+                The model-generated answer will appear here after retrieval.
+              </div>
+            </section>
+            <div id="paperList" class="paper-list"></div>
+          </section>
+        </main>
+      </section>
+
+      <section id="graphView" class="graph-view" aria-label="related paper graph">
+        <header class="graph-topbar">
+          <button id="backResults" class="graph-brand" type="button" aria-label="Back to results">
+            <span class="graph-brand-mark" aria-hidden="true">CP</span>
+            <strong>ScholarCP</strong>
+          </button>
+          <div class="graph-paper-title" id="graphTitle">Paper relation graph</div>
+          <div class="graph-search">
+            <span class="graph-search-icon"></span>
+            <input id="graphSearchInput" type="search" placeholder="Search within related papers..." />
+          </div>
+          <nav class="graph-actions" aria-label="graph actions">
+            <button id="graphBackHome" class="graph-text-button" type="button">Back home</button>
+          </nav>
+        </header>
+
+        <main class="graph-shell">
+          <section class="graph-canvas-wrap">
+            <div class="graph-map-header">
+              <span>Relation Map</span>
+              <strong>Topic, author, and metadata links among retrieved papers</strong>
+            </div>
+            <svg id="relationGraph" class="relation-graph" role="img" aria-label="paper relation graph"></svg>
+          </section>
+          <aside class="graph-side">
+            <div class="graph-side-title">Selected Paper</div>
+            <div id="graphPaperInfo" class="graph-paper-info"></div>
+            <div class="graph-side-title">Origin Paper</div>
+            <div id="graphOriginItem" class="graph-origin-item"></div>
+            <div class="graph-side-title">Related Papers</div>
+            <div id="graphRelatedList" class="graph-related-list"></div>
+            <div class="graph-side-title">Relation Basis</div>
+            <div class="relation-legend">
+              <span><i class="legend-author"></i> shared authors</span>
+              <span><i class="legend-topic"></i> topic overlap</span>
+              <span><i class="legend-source"></i> source / year proximity</span>
+            </div>
+          </aside>
+        </main>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

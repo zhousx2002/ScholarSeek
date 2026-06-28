@@ -1,0 +1,16 @@
+{
+  "dataset_dir": "E:\\DATASET\\PasaDataSet",
+  "model_dir": "E:\\VsCodeProjects\\ScholarSeek_Agent\\outputs\\reranker_model_base",
+  "split": "test",
+  "candidates_per_query": 64,
+  "limit_records": null,
+  "seed": 13,
+  "duration_seconds": 1133.676,
+  "queries_per_second": 0.882,
+  "metrics": {
+    "queries": 1000,
+    "recall@1": 0.438,
+    "recall@5": 0.746,
+    "mrr": 0.5769522287822028
+  }
+}
